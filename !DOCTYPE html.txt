@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eurovision Song Contest</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* NAV */
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(15, 5, 30, 0.85); /* Morado oscuro con transparencia */
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+    border-bottom: 2px solid #ff007f; /* Línea rosa neón */
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #00f0ff; /* Azul neón al pasar el cursor */
+}
+
+/* SECCIONES */
+section {
+    min-height: 100vh;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+/* HERO */
+.hero {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4b0082, #ff007f, #00f0ff); /* Degradado Eurovisión */
+    color: white;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: white;
+    color: #4b0082;
+    border-radius: 25px;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background: #00f0ff;
+    color: #0f051e;
+}
+
+/* VIDEO */
+.video {
+    width: 80%;
+    margin: auto;
+    margin-top: -50px; /* Eleva un poco el video sobre el hero */
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+    border-radius: 15px;
+}
+
+video {
+    width: 100%;
+    border-radius: 15px;
+    display: block;
+}
+
+/* FONDOS */
+#inicio {
+    background: #0f051e;
+    color: white;
+}
+
+#quienes, #catalogo {
+    background: linear-gradient(135deg, #1f0b3d, #4b0082);
+    color: white;
+}
+
+#redes, #contacto {
+    background: #0a0314;
+    color: white;
+    border-top: 1px solid #ff007f;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.08); /* Fondo translúcido elegante */
+    color: white;
+    width: 280px;
+    margin: 15px;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 0, 127, 0.3);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: #00f0ff;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #00f0ff;
+}
+
+.card p {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.card button {
+    background: linear-gradient(90deg, #ff007f, #4b0082);
+    border: none;
+    padding: 10px 25px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.card button:hover {
+    background: linear-gradient(90deg, #00f0ff, #ff007f);
+}
+
+/* COLLAGE */
+.collage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 40px auto 0 auto;
+    max-width: 800px;
+}
+
+.collage img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* WHATSAPP / BOTÓN CONTACTO */
+.whatsapp {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 30px;
+    background: #ff007f;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 0, 127, 0.4);
+    transition: background 0.3s;
+}
+
+.whatsapp:hover {
+    background: #00f0ff;
+    color: #0f051e;
+}
+
+/* ANIMACIÓN */
+.fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s all ease-out;
+}
+
+.fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 3px;
+    background: #ff007f;
+    margin: 8px auto 0 auto;
+    border-radius: 2px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#quienes">El Festival</a>
+    <a href="#catalogo">Boletos</a>
+    <a href="#redes">Redes</a>
+    <a href="#contacto">Soporte</a>
+</nav>
+
+<!-- INICIO -->
+<section id="inicio">
+    <div class="hero">
+        <h1>Eurovision Song Contest 🎤</h1>
+        <p>United By Music — Disfruta del espectáculo musical más grande del mundo</p>
+        <a href="#catalogo" class="btn">Adquirir Entradas</a>
+    </div>
+
+    <div class="video">
+        <!-- Puedes cambiar "eurovision_promo.mp4" por el video oficial que gustes -->
+        <video controls>
+            <source src="eurovision_promo.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+    </div>
+</section>
+
+<!-- NOSOTROS / EL FESTIVAL -->
+<section id="quienes" class="fade">
+    <h2>¿Qué es Eurovisión?</h2>
+    <p style="max-width: 800px; margin: 0 auto 20px auto;">Es el festival de la canción televisado más longevo y espectacular del planeta. Año con año, decenas de países unen sus culturas y voces en una competencia sana que celebra la diversidad, la creatividad y el talento musical sin fronteras.</p>
+
+    <div class="collage">
+        <!-- Reemplaza estos archivos con fotos de los escenarios o ganadores -->
+        <img src="escenario.jpg" alt="Escenario Eurovisión">
+        <img src="ganador.jpg" alt="Ganador del Festival">
+        <img src="publico.jpg" alt="Público celebrando">
+        <img src="trofeo.jpg" alt="Micrófono de cristal">
+    </div>
+</section>
+
+<!-- CATALOGO / ENTRADAS -->
+<section id="catalogo">
+    <h2>Boletos y Experiencias</h2>
+    <p>Asegura tu lugar en la fiesta de la música europea</p>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Live Grand Final</h3>
+            <p>Acceso directo al show principal en vivo del sábado por la noche.</p>
+            <button onclick="alert('Redirigiendo a la ticketera oficial para la Gran Final')">Reservar</button>
+        </div>
+
+        <div class="card">
+            <h3>Euroclub Pass</h3>
+            <p>Acceso exclusivo a las fiestas oficiales con los artistas invitados y delegaciones.</p>
+            <button onclick="alert('Redirigiendo a la venta de pases Euroclub')">Comprar Pase</button>
+        </div>
+
+        <div class="card">
+            <h3>VIP Backstage Experience</h3>
+            <p>Tour detrás de escena, asientos preferenciales y mercancía oficial de colección.</p>
+            <button onclick="alert('Consultando disponibilidad VIP')">Ver Detalles</button>
+        </div>
+    </div>
+
+    <div class="collage">
+        <img src="show1.jpg" alt="Presentación en vivo">
+        <img src="show2.jpg" alt="Efectos especiales">
+        <img src="show3.jpg" alt="Banderas del mundo">
+        <img src="show4.jpg" alt="Green Room">
+    </div>
+</section>
+
+<!-- REDES -->
+<section id="redes" class="fade">
+    <h2>Canales Oficiales</h2>
+    <p style="margin-bottom: 20px;">Sigue el minuto a minuto del festival y las reacciones de las delegaciones:</p>
+    <p>📸 Instagram: @eurovision</p>
+    <p>📘 Facebook: Eurovision Song Contest</p>
+    <p>🎵 TikTok: @eurovision</p>
+    <p>📺 YouTube: Eurovision Song Contest</p>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="fade">
+    <h2>Contacto y Prensa</h2>
+    <p>¿Tienes dudas sobre los accesos o eres miembro de los medios de comunicación?</p>
+    <p style="margin-top: 10px; font-weight: 300;">📧 info@eurovision.tv</p>
+
+    <!-- Enlace simulado a soporte técnico o atención internacional -->
+    <a class="whatsapp" href="https://eurovision.tv/" target="_blank">
+        Visitar Sitio Oficial Eurovision.tv
+    </a>
+</section>
+
+<script>
+const fades = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+    fades.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if(top < window.innerHeight - 100){
+            el.classList.add('visible');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
